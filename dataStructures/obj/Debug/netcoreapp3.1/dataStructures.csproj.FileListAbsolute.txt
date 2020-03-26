@@ -1,0 +1,15 @@
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\dataStructures.exe
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.csprojAssemblyReference.cache
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.AssemblyInfoInputs.cache
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.AssemblyInfo.cs
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\dataStructures.deps.json
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\dataStructures.runtimeconfig.json
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\dataStructures.runtimeconfig.dev.json
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\dataStructures.dll
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\dataStructures.pdb
+D:\repos\dataStructures\dataStructures\bin\Debug\netcoreapp3.1\nunit.framework.dll
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.csproj.CoreCompileInputs.cache
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.csproj.CopyComplete
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.dll
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.pdb
+D:\repos\dataStructures\dataStructures\obj\Debug\netcoreapp3.1\dataStructures.genruntimeconfig.cache
