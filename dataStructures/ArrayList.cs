@@ -4,7 +4,7 @@ using System.Text;
 
 namespace dataStructures
 {
-    public class ArrayList
+    public class ArrayList : IdataStructures
     {
         private int[] array;
         private int length;
@@ -403,7 +403,7 @@ namespace dataStructures
             }
         }
 
-        public int[] ReturnArrayList()
+        public int[] Return()
         {
             int[] arrayForReturn = new int[length];
             for (int i = 0; i < arrayForReturn.Length; i++)

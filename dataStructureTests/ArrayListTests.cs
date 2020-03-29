@@ -13,7 +13,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Add(a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 3 }, new int[] { 4, 2, 1, 0 }, ExpectedResult = new int[] { 0, 1, 3, 4, 2, 1, 0 })]
@@ -24,7 +24,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Add(a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 2, 5, ExpectedResult = new int[] { 0, 1, 5, 2, 4 })]
@@ -35,7 +35,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Add(index, a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 1, new int[] { 9, 8, 7 }, ExpectedResult = new int[] { 0, 9, 8, 7, 1, 2, 4 })]
@@ -46,7 +46,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Add(index, a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 5, ExpectedResult = new int[] { 5, 0, 1, 2, 4 })]
@@ -57,7 +57,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.AddToBeggining(a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, new int[] { 7, 8, 9 }, ExpectedResult = new int[] { 7, 8, 9, 0, 1, 2, 4 })]
@@ -68,7 +68,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.AddToBeggining(a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, ExpectedResult = new int[] { 0, 1, 2 })]
@@ -79,7 +79,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Remove();
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 2, ExpectedResult = new int[] { 0, 1, 4 })]
@@ -89,7 +89,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Remove(a);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 1, 3, ExpectedResult = new int[] { 0 })]
@@ -101,7 +101,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Remove(index, quantity);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 4, 5 }, ExpectedResult = new int[] { 1, 4, 5 })]
@@ -112,7 +112,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.RemoveFirstElement();
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 4, 5 }, 3, ExpectedResult = new int[] { 5 })]
@@ -124,7 +124,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.RemoveFirstElement(quantity);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 4, 5 }, 3, ExpectedResult = new int[] { 0 })]
@@ -136,7 +136,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.RemoveLastElement(quantity);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 0, 1, 9, 2, 4, 6 }, 2, ExpectedResult = 3)]
@@ -159,7 +159,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.Reverse();
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase (new int[] { 3, 1, 6, 8, 89, 23, 111 }, ExpectedResult = 1)]
@@ -192,7 +192,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.SortArrayInc();
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111 }, ExpectedResult = new int[] { 111, 89, 23, 8, 6, 3, 1 })]
@@ -203,7 +203,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.SortArrayDec();
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, 3, ExpectedResult = new int[] { 1, 6, 8, 89, 23, 111, 67 })]
@@ -214,7 +214,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual.RemoveElement(element);
 
-            return actual.ReturnArrayList();
+            return actual.Return();
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, 3, ExpectedResult = 8)]
@@ -235,7 +235,7 @@ namespace dataStructureTests
             ArrayList actual = new ArrayList(array);
             actual[index] = num;
 
-            return actual.ReturnArrayList(); 
+            return actual.Return(); 
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, ExpectedResult = 6)]
