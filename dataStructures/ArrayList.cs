@@ -9,7 +9,7 @@ namespace dataStructures
         private int[] array;
         private int length;
 
-        public int Length { get { return this.length; } }
+        public int Length { get { return length; } }
         public int this[int i] { 
             get {
                 if (length > i)

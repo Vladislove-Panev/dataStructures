@@ -10,7 +10,7 @@ namespace dataStructureTests
         [TestCase(new int[] { 0 }, -2135, ExpectedResult = new int[] { 0, -2135 })]
         public int[] AddTest(int[] array, int a)
         {
-            ArrayList actual = new ArrayList(array);
+            IdataStructures actual = new ArrayList(array);
             actual.Add(a);
 
             return actual.Return();
