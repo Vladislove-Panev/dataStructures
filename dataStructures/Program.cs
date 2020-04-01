@@ -99,6 +99,14 @@ namespace dataStructures
             arr = L.Return();
             for (int i = 0; i < arr.Length; i++)
                 Console.Write(arr[i] + " ");
+
+            Console.WriteLine();
+            Console.Write("-----------------------");
+            Console.WriteLine();
+            L.SortArrayInc();
+            arr = L.Return();
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write(arr[i] + " ");
         }
     }
 }

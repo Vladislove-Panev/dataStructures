@@ -6,18 +6,43 @@ namespace dataStructures
 {
     public class LinkedList : IdataStructures
     {
-        private Node root;
+        public Node Root { get; private set; }
         public int Length { get; private set; }
+
+        public int this[int index] 
+        { 
+            get 
+            {
+                Node tmp = Root;
+                for (int i = 0; i < index; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                return tmp.Value;
+            }
+            set
+            {
+                Node tmp = Root;
+                for (int i = 0; i < index; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Value = value;
+            } 
+        }
+
+        public int MaxElementIndex { get { return GetIndex(Max()); } }
+        public int MinElementIndex { get { return GetIndex(Min()); } }
 
         public LinkedList()
         {
-            root = null;
+            Root = null;
             Length = 0;
         }
 
         public LinkedList(int element)
         {
-            root = new Node(element);
+            Root = new Node(element);
             Length = 1;
         }
 
@@ -25,17 +50,17 @@ namespace dataStructures
         {
             if (Length == 0)
             {
-                root = new Node(element);
+                Root = new Node(element);
                 Length = 1;
             }
             else if (Length == 1)
             {
-                root.Next = new Node(element);
+                Root.Next = new Node(element);
                 Length++;
             }
             else
             {
-                Node tmp = root;
+                Node tmp = Root;
                 while (tmp.Next != null)
                 {
                     tmp = tmp.Next;
@@ -49,7 +74,7 @@ namespace dataStructures
         {
             if (Length != 0)
             {
-                Node tmp = root;
+                Node tmp = Root;
                 while (tmp.Next != null)
                 {
                     tmp = tmp.Next;
@@ -63,9 +88,9 @@ namespace dataStructures
             }
             else
             {
-                root = new Node(elements[0]);
+                Root = new Node(elements[0]);
 
-                Node tmp = root;
+                Node tmp = Root;
                 while (tmp.Next != null)
                 {
                     tmp = tmp.Next;
@@ -83,7 +108,7 @@ namespace dataStructures
 
         public void Add(int index, int element)
         {
-            Node tmp = root;
+            Node tmp = Root;
 
             for (int i = 0; i < index-1; i++)
             {
@@ -99,7 +124,7 @@ namespace dataStructures
 
         public void Add(int index, int[] elements)
         {
-            Node tmp = root;
+            Node tmp = Root;
 
             for (int i = 0; i < index - 1; i++)
             {
@@ -121,8 +146,8 @@ namespace dataStructures
         public void AddToBeggining(int element)
         {
             Node tmp = new Node(element);
-            tmp.Next = root;
-            root = tmp;
+            tmp.Next = Root;
+            Root = tmp;
             Length++;
         }
 
@@ -134,7 +159,7 @@ namespace dataStructures
 
         public int GetIndex(int element)
         {
-            Node tmp = root;
+            Node tmp = Root;
             for (int i = 0; i < Length; i++)
             {
                 if (tmp.Value == element)
@@ -146,7 +171,7 @@ namespace dataStructures
 
         public int Max()
         {
-            Node tmp = root;
+            Node tmp = Root;
             int max = tmp.Value;
 
             while (tmp.Next != null)
@@ -162,7 +187,7 @@ namespace dataStructures
 
         public int Min()
         {
-            Node tmp = root;
+            Node tmp = Root;
             int min = tmp.Value;
 
             while (tmp.Next != null)
@@ -178,7 +203,7 @@ namespace dataStructures
 
         public void Remove()
         {
-            Node tmp = root;
+            Node tmp = Root;
 
             for (int i = 0; i < Length - 2; i++)
                 tmp = tmp.Next;
@@ -189,7 +214,7 @@ namespace dataStructures
 
         public void Remove(int index)
         {
-            Node tmp = root;
+            Node tmp = Root;
 
             for (int i = 0; i < index-1; i++)
                 tmp = tmp.Next;
@@ -200,7 +225,7 @@ namespace dataStructures
 
         public void Remove(int index, int quantity)
         {
-            Node tmp = root;
+            Node tmp = Root;
 
             for (int i = 0; i < index - 1; i++)
                 tmp = tmp.Next;
@@ -213,13 +238,13 @@ namespace dataStructures
 
         public void RemoveElement(int element)
         {
-            Node tmp = root;
+            Node tmp = Root;
 
             for (int i = 0; i < Length; i++)
             {
                 if (tmp.Value == element)
                 {
-                    root = tmp.Next;
+                    Root = tmp.Next;
                     Length--;
                 }
                 else if (tmp.Next.Value == element)
@@ -234,7 +259,7 @@ namespace dataStructures
 
         public void RemoveFirstElement()
         {
-            root = root.Next;
+            Root = Root.Next;
             Length--;
         }
 
@@ -242,14 +267,14 @@ namespace dataStructures
         {
             for (int i = 0; i < quantity; i++)
             {
-                root = root.Next;
+                Root = Root.Next;
                 Length--;
             }
         }
 
         public void RemoveLastElement(int quantity)
         {
-            Node tmp = root;
+            Node tmp = Root;
             for (int i = 0; i < Length - quantity - 1; i++)
                 tmp = tmp.Next;
             tmp.Next = null;
@@ -261,7 +286,7 @@ namespace dataStructures
             int[] array = new int[Length];
             if (Length != 0)
             {
-                Node tmp = root;
+                Node tmp = Root;
                 int i = 0;
                 do
                 {
@@ -277,7 +302,7 @@ namespace dataStructures
 
         public void Reverse()
         {
-            Node prev = null, current = root, next;
+            Node prev = null, current = Root, next;
             while (current != null)
             {
                 next = current.Next;
@@ -285,7 +310,7 @@ namespace dataStructures
                 prev = current;
                 current = next;
             }
-            root = prev;
+            Root = prev;
         }
 
         public void SortArrayDec()
@@ -295,7 +320,7 @@ namespace dataStructures
 
         public void SortArrayInc()
         {
-            throw new NotImplementedException();
+           
         }
     }
 }
