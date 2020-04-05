@@ -4,13 +4,13 @@ using System.Text;
 
 namespace dataStructures
 {
-    public interface IdataStructures
+    public interface IDataStructures
     {
         public int Length { get; }
-        //public int this[int index] { get; set; }
+        public int this[int index] { get; set; }
 
-        //public int MaxElementIndex { get; }
-        //public int MinElementIndex { get; }
+        public int MaxElementIndex { get; }
+        public int MinElementIndex { get; }
 
         public void Add(int element);
 

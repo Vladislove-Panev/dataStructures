@@ -3,17 +3,45 @@ using dataStructures;
 
 namespace dataStructureTests
 {
+    [TestFixture (1)]
+    [TestFixture (2)]
+    [TestFixture (3)]
     public class Tests
     {
+        IDataStructures list;
+        int a;
+
+        public Tests(int _a)
+        {
+            a = _a;
+        }
+
+        [SetUp]
+        public void AssignList()
+        {
+            switch (a)
+            {
+                case 1:
+                    list = new ArrayList();
+                    break;
+                case 2:
+                    list = new LinkedList();
+                    break;
+                case 3:
+                    list = new L2List();
+                    break;
+            }
+        }
+
         [TestCase(new int[] { 0, 1, 2, 4 }, 5, ExpectedResult = new int[] { 0, 1, 2, 4, 5 })]
         [TestCase(new int[] { }, 5, ExpectedResult = new int[] { 5 })]
         [TestCase(new int[] { 0 }, -2135, ExpectedResult = new int[] { 0, -2135 })]
         public int[] AddTest(int[] array, int a)
         {
-            IdataStructures actual = new ArrayList(array);
-            actual.Add(a);
+            list.Add(array);
+            list.Add(a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 3 }, new int[] { 4, 2, 1, 0 }, ExpectedResult = new int[] { 0, 1, 3, 4, 2, 1, 0 })]
@@ -21,21 +49,21 @@ namespace dataStructureTests
         [TestCase(new int[] { }, new int[] { }, ExpectedResult = new int[] { })]
         public int[] AddTest(int[] array, int[] a)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Add(a);
+            list.Add(array);
+            list.Add(a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 2, 5, ExpectedResult = new int[] { 0, 1, 5, 2, 4 })]
-        [TestCase(new int[] { }, 0, 1, ExpectedResult = new int[] { })]
+        [TestCase(new int[] { }, 0, 1, ExpectedResult = new int[] { 1 })]
         [TestCase(new int[] { 0 }, 0, -2135, ExpectedResult = new int[] { -2135, 0 })]
         public int[] AddTest(int[] array, int index, int a)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Add(index, a);
+            list.Add(array);
+            list.Add(index, a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 1, new int[] { 9, 8, 7 }, ExpectedResult = new int[] { 0, 9, 8, 7, 1, 2, 4 })]
@@ -43,10 +71,10 @@ namespace dataStructureTests
         [TestCase(new int[] { }, 0, new int[] { }, ExpectedResult = new int[] { })]
         public int[] AddTest(int[] array, int index, int[] a)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Add(index, a);
+            list.Add(array);
+            list.Add(index, a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 5, ExpectedResult = new int[] { 5, 0, 1, 2, 4 })]
@@ -54,10 +82,10 @@ namespace dataStructureTests
         [TestCase(new int[] { 0 }, -2135, ExpectedResult = new int[] { -2135, 0 })]
         public int[] AddToBegginingTest(int[] array, int a)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.AddToBeggining(a);
+            list.Add(array);
+            list.AddToBeggining(a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, new int[] { 7, 8, 9 }, ExpectedResult = new int[] { 7, 8, 9, 0, 1, 2, 4 })]
@@ -65,10 +93,10 @@ namespace dataStructureTests
         [TestCase(new int[] { 0 }, new int[] { -23, 67 }, ExpectedResult = new int[] { -23, 67, 0 })]
         public int[] AddToBegginingTest(int[] array, int[] a)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.AddToBeggining(a);
+            list.Add(array);
+            list.AddToBeggining(a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, ExpectedResult = new int[] { 0, 1, 2 })]
@@ -76,20 +104,20 @@ namespace dataStructureTests
         [TestCase(new int[] { 0 }, ExpectedResult = new int[] { })]
         public int[] RemoveTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Remove();
+            list.Add(array);
+            list.Remove();
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 2, ExpectedResult = new int[] { 0, 1, 4 })]
         [TestCase(new int[] { 0 }, 0, ExpectedResult = new int[] { })]
         public int[] RemoveTest(int[] array, int a)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Remove(a);
+            list.Add(array);
+            list.Remove(a);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 2, 4 }, 1, 3, ExpectedResult = new int[] { 0 })]
@@ -98,10 +126,10 @@ namespace dataStructureTests
         [TestCase(new int[] { }, 0, 1, ExpectedResult = new int[] { })]
         public int[] RemoveTest(int[] array, int index, int quantity)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Remove(index, quantity);
+            list.Add(array);
+            list.Remove(index, quantity);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 4, 5 }, ExpectedResult = new int[] { 1, 4, 5 })]
@@ -109,10 +137,10 @@ namespace dataStructureTests
         [TestCase(new int[] { 4 }, ExpectedResult = new int[] { })]
         public int[] RemoveFirstElementTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.RemoveFirstElement();
+            list.Add(array);
+            list.RemoveFirstElement();
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 4, 5 }, 3, ExpectedResult = new int[] { 5 })]
@@ -121,10 +149,10 @@ namespace dataStructureTests
         [TestCase(new int[] { 4 }, 1, ExpectedResult = new int[] { })]
         public int[] RemoveFirstElementTest(int[] array, int quantity)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.RemoveFirstElement(quantity);
+            list.Add(array);
+            list.RemoveFirstElement(quantity);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 4, 5 }, 3, ExpectedResult = new int[] { 0 })]
@@ -133,10 +161,10 @@ namespace dataStructureTests
         [TestCase(new int[] { 4 }, 1, ExpectedResult = new int[] { })]
         public int[] RemoveLastElementTest(int[] array, int quantity)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.RemoveLastElement(quantity);
+            list.Add(array);
+            list.RemoveLastElement(quantity);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 0, 1, 9, 2, 4, 6 }, 2, ExpectedResult = 3)]
@@ -144,8 +172,8 @@ namespace dataStructureTests
         [TestCase(new int[] { -231, -678, 789, 231 }, 111, ExpectedResult = -1)]
         public int GetIndexTest(int[] array, int element)
         {
-            ArrayList actualOb = new ArrayList(array);
-            int actual = actualOb.GetIndex(element);
+            list.Add(array);
+            int actual = list.GetIndex(element);
 
             return actual;
         }
@@ -156,10 +184,10 @@ namespace dataStructureTests
         [TestCase(new int[] { 1, 9 }, ExpectedResult = new int[] { 9, 1 })]
         public int[] ReversTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.Reverse();
+            list.Add(array);
+            list.Reverse();
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase (new int[] { 3, 1, 6, 8, 89, 23, 111 }, ExpectedResult = 1)]
@@ -167,8 +195,8 @@ namespace dataStructureTests
         [TestCase (new int[] { }, ExpectedResult = 0)]
         public int MinTest(int[] array)
         {
-            ArrayList actualOb = new ArrayList(array);
-            int actual = actualOb.Min();
+            list.Add(array);
+            int actual = list.Min();
 
             return actual;
         }
@@ -178,8 +206,8 @@ namespace dataStructureTests
         [TestCase(new int[] { }, ExpectedResult = 0)]
         public int MaxTest(int[] array)
         {
-            ArrayList actualOb = new ArrayList(array);
-            int actual = actualOb.Max();
+            list.Add(array);
+            int actual = list.Max();
 
             return actual;
         }
@@ -189,10 +217,10 @@ namespace dataStructureTests
         [TestCase(new int[] { }, ExpectedResult = new int[] { })]
         public int[] SortArrayIncTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.SortArrayInc();
+            list.Add(array);
+            list.SortArrayInc();
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111 }, ExpectedResult = new int[] { 111, 89, 23, 8, 6, 3, 1 })]
@@ -200,10 +228,10 @@ namespace dataStructureTests
         [TestCase(new int[] { }, ExpectedResult = new int[] { })]
         public int[] SortArrayDecTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.SortArrayDec();
+            list.Add(array);
+            list.SortArrayDec();
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, 3, ExpectedResult = new int[] { 1, 6, 8, 89, 23, 111, 67 })]
@@ -211,10 +239,10 @@ namespace dataStructureTests
         [TestCase(new int[] { }, 0, ExpectedResult = new int[] { })]
         public int[] RemoveElementTest(int[] array, int element)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.RemoveElement(element);
+            list.Add(array);
+            list.RemoveElement(element);
 
-            return actual.Return();
+            return list.Return();
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, 3, ExpectedResult = 8)]
@@ -222,9 +250,9 @@ namespace dataStructureTests
         [TestCase(new int[] { }, 0, ExpectedResult = -1)]
         public int GetElementTest(int[] array, int index)
         {
-            ArrayList actual = new ArrayList(array);
+            list.Add(array);
 
-            return actual[index];
+            return list[index];
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, 3, 44, ExpectedResult = new int[] { 3, 1, 6, 44, 89, 23, 111, 3, 67, 3 })]
@@ -232,10 +260,10 @@ namespace dataStructureTests
         [TestCase(new int[] { }, 0, 1, ExpectedResult = new int[] { })]
         public int[] SetElementTest(int[] array, int index, int num)
         {
-            ArrayList actual = new ArrayList(array);
-            actual[index] = num;
+            list.Add(array);
+            list[index] = num;
 
-            return actual.Return(); 
+            return list.Return(); 
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, ExpectedResult = 6)]
@@ -243,9 +271,9 @@ namespace dataStructureTests
         [TestCase(new int[] { }, ExpectedResult = -1)]
         public int GetMaxElementIndexTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
+            list.Add(array);
 
-            return actual.MaxElementIndex;
+            return list.MaxElementIndex;
         }
 
         [TestCase(new int[] { 3, 1, 6, 8, 89, 23, 111, 3, 67, 3 }, ExpectedResult = 1)]
@@ -253,9 +281,9 @@ namespace dataStructureTests
         [TestCase(new int[] { }, ExpectedResult = -1)]
         public int GetMinElementIndexTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
+            list.Add(array);
 
-            return actual.MinElementIndex;
+            return list.MinElementIndex;
         }
     }
 }

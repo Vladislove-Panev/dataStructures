@@ -4,7 +4,7 @@ using System.Text;
 
 namespace dataStructures
 {
-    public class LinkedList : IdataStructures
+    public class LinkedList : IDataStructures
     {
         public Node Root { get; private set; }
         public int Length { get; private set; }
@@ -13,21 +13,28 @@ namespace dataStructures
         { 
             get 
             {
-                Node tmp = Root;
-                for (int i = 0; i < index; i++)
+                if (Length != 0)
                 {
-                    tmp = tmp.Next;
+                    Node tmp = Root;
+                    for (int i = 0; i < index; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    return tmp.Value;
                 }
-                return tmp.Value;
+                return -1;
             }
             set
             {
-                Node tmp = Root;
-                for (int i = 0; i < index; i++)
+                if (Length != 0)
                 {
-                    tmp = tmp.Next;
+                    Node tmp = Root;
+                    for (int i = 0; i < index; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Value = value;
                 }
-                tmp.Value = value;
             } 
         }
 
@@ -72,75 +79,108 @@ namespace dataStructures
 
         public void Add(int[] elements)
         {
-            if (Length != 0)
+            if (elements.Length != 0)
             {
-                Node tmp = Root;
-                while (tmp.Next != null)
+                if (Length != 0)
                 {
-                    tmp = tmp.Next;
+                    Node tmp = Root;
+                    while (tmp.Next != null)
+                    {
+                        tmp = tmp.Next;
+                    }
+
+                    for (int i = 0; i < elements.Length; i++)
+                    {
+                        tmp.Next = new Node(elements[i]);
+                        tmp = tmp.Next;
+                    }
+                }
+                else
+                {
+                    Root = new Node(elements[0]);
+
+                    Node tmp = Root;
+
+                    for (int i = 1; i < elements.Length; i++)
+                    {
+                        tmp.Next = new Node(elements[i]);
+                        tmp = tmp.Next;
+                    }
                 }
 
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    tmp.Next = new Node(elements[i]);
-                    tmp = tmp.Next;
-                }
+                Length += elements.Length;
             }
-            else
-            {
-                Root = new Node(elements[0]);
-
-                Node tmp = Root;
-                while (tmp.Next != null)
-                {
-                    tmp = tmp.Next;
-                }
-
-                for (int i = 1; i < elements.Length; i++)
-                {
-                    tmp.Next = new Node(elements[i]);
-                    tmp = tmp.Next;
-                }
-            }
-
-            Length += elements.Length;
         }
 
         public void Add(int index, int element)
         {
-            Node tmp = Root;
-
-            for (int i = 0; i < index-1; i++)
+            if (Length != 0)
             {
-                tmp = tmp.Next;
-            }
-            Node tmp2 = tmp.Next;
-            tmp.Next = new Node(element);
-            tmp = tmp.Next;
-            tmp.Next = tmp2;
+                Node tmp = Root;
 
-            Length++;
+                if (Length > 1)
+                {
+                    for (int i = 0; i < index - 1; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    Node tmp2 = tmp.Next;
+                    tmp.Next = new Node(element);
+                    tmp = tmp.Next;
+                    tmp.Next = tmp2;
+                }
+                else
+                {
+                    Node tmp2;
+                    tmp2 = new Node(element);
+                    tmp2.Next = tmp;
+                    Root = tmp2;
+                }
+                Length++;
+            }
+            else
+            {
+                Add(element);
+            }
         }
 
         public void Add(int index, int[] elements)
         {
-            Node tmp = Root;
-
-            for (int i = 0; i < index - 1; i++)
+            if (elements.Length != 0)
             {
-                tmp = tmp.Next;
-            }
-            Node tmp2 = tmp.Next;
-        
-            for(int i = 0; i < elements.Length; i++)
-            {
-                tmp.Next = new Node(elements[i]);
-                tmp = tmp.Next;
-            }
+                Node tmp = Root;
 
-            tmp.Next = tmp2;
+                if (Length > 1)
+                {
+                    for (int i = 0; i < index - 1; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    Node tmp2 = tmp.Next;
 
-            Length+=elements.Length;
+                    for (int i = 0; i < elements.Length; i++)
+                    {
+                        tmp.Next = new Node(elements[i]);
+                        tmp = tmp.Next;
+                    }
+
+                    tmp.Next = tmp2;
+                }
+                else
+                {
+                    Node tmp2 = new Node(elements[0]);
+                    Root = tmp2;
+
+                    for (int i = 1; i < elements.Length; i++)
+                    {
+                        tmp2.Next = new Node(elements[i]);
+                        tmp2 = tmp2.Next;
+                    }
+                    tmp2.Next = tmp;
+                }
+
+                Length += elements.Length;
+            }
         }
 
         public void AddToBeggining(int element)
@@ -164,6 +204,7 @@ namespace dataStructures
             {
                 if (tmp.Value == element)
                     return i;
+                tmp = tmp.Next;
             }
 
             return -1;
@@ -171,114 +212,165 @@ namespace dataStructures
 
         public int Max()
         {
-            Node tmp = Root;
-            int max = tmp.Value;
-
-            while (tmp.Next != null)
+            if (Length != 0)
             {
-                tmp = tmp.Next;
+                Node tmp = Root;
+                int max = tmp.Value;
 
-                if (max < tmp.Value)
-                    max = tmp.Value;
+                while (tmp.Next != null)
+                {
+                    tmp = tmp.Next;
+
+                    if (max < tmp.Value)
+                        max = tmp.Value;
+                }
+
+                return max;
             }
 
-            return max;
+            return 0;
         }
 
         public int Min()
         {
-            Node tmp = Root;
-            int min = tmp.Value;
-
-            while (tmp.Next != null)
+            if (Length != 0)
             {
-                tmp = tmp.Next;
+                Node tmp = Root;
+                int min = tmp.Value;
 
-                if (min > tmp.Value)
-                    min = tmp.Value;
+                while (tmp.Next != null)
+                {
+                    tmp = tmp.Next;
+
+                    if (min > tmp.Value)
+                        min = tmp.Value;
+                }
+
+                return min;
             }
 
-            return min;
+            return 0;
         }
 
         public void Remove()
         {
-            Node tmp = Root;
+            if (Length != 0)
+            {
+                Node tmp = Root;
 
-            for (int i = 0; i < Length - 2; i++)
-                tmp = tmp.Next;
+                for (int i = 0; i < Length - 2; i++)
+                    tmp = tmp.Next;
 
-            tmp.Next = null;
-            Length--;
+                tmp.Next = null;
+                Length--;
+            }
         }
 
         public void Remove(int index)
         {
-            Node tmp = Root;
+            if (Length != 0)
+            {
+                Node tmp = Root;
 
-            for (int i = 0; i < index-1; i++)
-                tmp = tmp.Next;
+                if (Length > 1)
+                {
+                    for (int i = 0; i < index - 1; i++)
+                        tmp = tmp.Next;
 
-            tmp.Next = tmp.Next.Next;
-            Length--;
+                    tmp.Next = tmp.Next.Next;
+                }
+                else
+                {
+                    Root = null;
+                }
+
+                Length--;
+            }
         }
 
         public void Remove(int index, int quantity)
         {
             Node tmp = Root;
 
-            for (int i = 0; i < index - 1; i++)
-                tmp = tmp.Next;
+            if (Length != 0)
+            {
+                if (Length > 1)
+                {
+                    for (int i = 0; i < index - 1; i++)
+                        tmp = tmp.Next;
 
-            for(int i = 0; i < quantity; i++)
-                tmp.Next = tmp.Next.Next;
+                    for (int i = 0; i < quantity; i++)
+                        tmp.Next = tmp.Next.Next;
 
-            Length -= quantity;
+                    Length -= quantity;
+                }
+                else
+                {
+                    Root = null;
+                    Length = 0;
+                }
+            }
         }
 
         public void RemoveElement(int element)
         {
-            Node tmp = Root;
+            Node tmp = Root, prev = null;
+            int i = 0;
 
-            for (int i = 0; i < Length; i++)
+            while(tmp != null)
             {
                 if (tmp.Value == element)
                 {
-                    Root = tmp.Next;
-                    Length--;
-                }
-                else if (tmp.Next.Value == element)
-                {
-                    tmp.Next = tmp.Next.Next;
-                    Length--;
-                }
+                    if (i == 0)
+                        Root = tmp.Next;
+                    else if(tmp.Next == null)
+                        prev.Next = null;
+                    else
+                    {
+                        prev.Next = prev.Next.Next;
+                    }
 
+                    Length--;
+                }
+              
+                i++;
+
+                prev = tmp;
                 tmp = tmp.Next;
             }
         }
 
         public void RemoveFirstElement()
         {
-            Root = Root.Next;
-            Length--;
-        }
-
-        public void RemoveFirstElement(int quantity)
-        {
-            for (int i = 0; i < quantity; i++)
+            if (Length != 0)
             {
                 Root = Root.Next;
                 Length--;
             }
         }
 
+        public void RemoveFirstElement(int quantity)
+        {
+            if (Length != 0)
+            {
+                for (int i = 0; i < quantity; i++)
+                {
+                    Root = Root.Next;
+                    Length--;
+                }
+            }
+        }
+
         public void RemoveLastElement(int quantity)
         {
-            Node tmp = Root;
-            for (int i = 0; i < Length - quantity - 1; i++)
-                tmp = tmp.Next;
-            tmp.Next = null;
-            Length -= quantity;
+            if (Length != 0)
+            {
+                Node tmp = Root;
+                for (int i = 0; i < Length - quantity - 1; i++)
+                    tmp = tmp.Next;
+                tmp.Next = null;
+                Length -= quantity;
+            }
         }
 
         public int[] Return()
@@ -315,12 +407,92 @@ namespace dataStructures
 
         public void SortArrayDec()
         {
-           
+            Node sorted = null;
+
+            Node current = Root;
+            while (current != null)
+            {
+                Node next = current.Next;
+
+                current.Next = null;
+
+                sorted = insertSortedDec(sorted, current);
+
+                current = next;
+            }
+
+            Root = sorted;
         }
 
         public void SortArrayInc()
         {
-           
+            Node sorted = null;
+
+            Node current = Root;
+
+            while(current != null)
+            {
+                Node next = current.Next;
+
+                current.Next = null;
+
+                sorted = insertSortedInc(sorted, current);
+
+                current = next;
+            }
+
+            Root = sorted;
+        }
+
+        private Node insertSortedDec(Node root, Node newNode)
+        {
+            Node current;
+
+            if (root == null)
+                root = newNode;
+            else if(root.Value <= newNode.Value)
+            {
+                newNode.Next = root;
+                root = newNode;
+            }
+            else
+            {
+                current = root;
+
+                while (current.Next != null && current.Next.Value > newNode.Value)
+                    current = current.Next;
+
+                newNode.Next = current.Next;
+
+                current.Next = newNode;
+            }
+
+            return root;
+        }
+
+        private Node insertSortedInc(Node root, Node newNode)
+        {
+            Node current;
+
+            if (root == null)
+                root = newNode;
+            else if(root.Value >= newNode.Value)
+            {
+                newNode.Next = root;
+                root = newNode;
+            }
+            else
+            {
+                current = root;
+
+                while (current.Next != null && current.Next.Value < newNode.Value)
+                    current = current.Next;
+
+                newNode.Next = current.Next;
+                current.Next = newNode;
+            }
+
+            return root;
         }
     }
 }

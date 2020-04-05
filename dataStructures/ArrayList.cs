@@ -4,7 +4,7 @@ using System.Text;
 
 namespace dataStructures
 {
-    public class ArrayList : IdataStructures
+    public class ArrayList : IDataStructures
     {
         private int[] array;
         private int length;
@@ -147,6 +147,10 @@ namespace dataStructures
                 MoveArrayElementsToRight(index);
                 array[index] = a;
                 length++;
+            }
+            else
+            {
+                Add(a);
             }
         }
 
