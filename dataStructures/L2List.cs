@@ -54,6 +54,11 @@ namespace dataStructures
             Length = 1;
         }
 
+        public L2List(int[] array)
+        {
+            Add(array);
+        }
+
         public void Add(int element)
         {
             if (Length == 0)

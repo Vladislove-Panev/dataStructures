@@ -53,6 +53,11 @@ namespace dataStructures
             Length = 1;
         }
 
+        public LinkedList(int[] array)
+        {
+            Add(array);
+        }
+
         public void Add(int element)
         {
             if (Length == 0)
